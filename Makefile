@@ -1,4 +1,4 @@
-AUTHOR=ing
+AUTHOR=banking
 NAME=ethnetwork
 NETWORKID=42
 SUBNET=10.0.42
