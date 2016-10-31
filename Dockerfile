@@ -12,7 +12,7 @@ COPY artifacts/credentials.* $DATA_DIR/
 COPY artifacts/key.* /root/
 COPY artifacts/static-nodes.json /root/.ethereum/static-nodes.json
 
-RUN for i in miner node1 node2 buyer seller inspector carrier; do \
+RUN for i in miner buyer seller carrier inspector bank1 bank2; do \
     /geth --password $DATA_DIR/credentials.$i --datadir=$DATA_DIR account new > $DATA_DIR/$i.id; \
     sed -i "s/Address: {//g" $DATA_DIR/$i.id; \
     sed -i "s/}//g" $DATA_DIR/$i.id; \
