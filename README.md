@@ -225,6 +225,26 @@ function checkAllBalances() {var i =0;eth.accounts.forEach( function(e){console.
 "ether") + " ether");i++;})};
 ```
 
+### Transferring ether between accounts
+
+Step 1 - Enter the geth console
+
+```
+make console
+```
+
+Step 2 - Unlock the account (0) you want to transfer funds from
+
+```
+> personal.unlockAccount(eth.accounts[0],"g3heimpje")
+```
+
+Step 3 - Transfer the funds from account 0 to account 1
+
+```
+> eth.sendTransaction({from:eth.accounts[0],to:eth.accounts[1],value:1e10})
+```
+
 See [https://github.com/ethereum/go-ethereum/wiki/geth](https://github.com/ethereum/go-ethereum/wiki/geth)
 how to use geth console and transfer Ether from one account to another.
 
