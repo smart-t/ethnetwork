@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OPTIONS="--maxpeers 42 --nodiscover --networkid 42 --port 30303 --rpc --rpcport 8545 --rpcapi admin,debug,shh,txpool,miner,personal,db,eth,net,web3 --etherbase 0x57e25703aba36bd2575e9027de2cb9ac187dc6da --verbosity 6"
+OPTIONS="--nodiscover --networkid 42 --port 30303 --rpc --rpcport 8545 --rpcapi eth,net,web3 --etherbase 0x57e25703aba36bd2575e9027de2cb9ac187dc6da --verbosity 6"
 HELP="This is a help page. \
 Available modes are: miner node1 node2 ethstats ethstatsclient help."
 case $1 in
