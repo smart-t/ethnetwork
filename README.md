@@ -85,7 +85,7 @@ is provided.
 Create a persistent data volume for the miner.
 
 ```
-make datavolume
+make datavolumes
 ```
 
 The miner node requires a DAG file, that is generated if it does not exist.
