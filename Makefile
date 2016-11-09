@@ -12,11 +12,11 @@ build:
 start: network miner node1 node2 ethstats ethstatsclient
 
 stop:
-	docker stop miner
-	docker stop node1
-	docker stop node2
-	docker stop ethstats
-	docker stop ethstatsclient
+	docker stop -t 0 miner
+	docker stop -t 0 node1
+	docker stop -t 0 node2
+	docker stop -t 0 ethstats
+	docker stop -t 0 ethstatsclient
 
 clean:
 	docker rm -f miner
@@ -31,8 +31,10 @@ cleanrestart: clean start
 network:
 	docker network create --subnet $(SUBNET).0/24 --gateway $(SUBNET).254 $(NETWORKNAME)
 
-datavolume:
-	docker run -d -v ethereumvol:/root --name data-eth_miner --entrypoint /bin/echo $(AUTHOR)/$(NAME):$(VERSION)
+datavolumes:
+	docker run -d -v ethereumminer:/root --name data-eth_miner --entrypoint /bin/echo $(AUTHOR)/$(NAME):$(VERSION)
+	docker run -d -v ethereumnode1:/root --name data-eth_node1 --entrypoint /bin/echo $(AUTHOR)/$(NAME):$(VERSION)
+	docker run -d -v ethereumnode2:/root --name data-eth_node2 --entrypoint /bin/echo $(AUTHOR)/$(NAME):$(VERSION)
 
 backup:
 	docker run --rm --volumes-from data-eth_miner -v $(PWD):/backup debian:wheezy bash -c "tar zcvf /backup/ethereumbackup.tgz root"
@@ -50,10 +52,10 @@ miner:
 	docker run -d --name=miner --net $(NETWORKNAME) --ip $(SUBNET).1 -e SUBNET=$(SUBNET) --volumes-from data-eth_miner  $(AUTHOR)/$(NAME):$(VERSION) miner
 
 node1:
-	docker run -d --name=node1 --net $(NETWORKNAME) --ip $(SUBNET).2 -e SUBNET=$(SUBNET) $(AUTHOR)/$(NAME):$(VERSION) node1
+	docker run -d --name=node1 --net $(NETWORKNAME) --ip $(SUBNET).2 -e SUBNET=$(SUBNET) --volumes-from data-eth_node1 $(AUTHOR)/$(NAME):$(VERSION) node1
 
 node2:
-	docker run -d --name=node2 --net $(NETWORKNAME) --ip $(SUBNET).3 -e SUBNET=$(SUBNET) $(AUTHOR)/$(NAME):$(VERSION) node2
+	docker run -d --name=node2 --net $(NETWORKNAME) --ip $(SUBNET).3 -e SUBNET=$(SUBNET) --volumes-from data-eth_node2 $(AUTHOR)/$(NAME):$(VERSION) node2
 
 ethstatsclient:
 	docker run -d --name=ethstatsclient --net $(NETWORKNAME) --ip $(SUBNET).243 -e SUBNET=$(SUBNET) $(AUTHOR)/$(NAME):$(VERSION) ethstatsclient
