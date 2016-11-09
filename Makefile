@@ -49,7 +49,7 @@ help:
 	docker run -i $(AUTHOR)/$(NAME):$(VERSION) help
 
 miner:
-	docker run -d --name=miner --net $(NETWORKNAME) --ip $(SUBNET).1 -e SUBNET=$(SUBNET) --volumes-from data-eth_miner  $(AUTHOR)/$(NAME):$(VERSION) miner
+	docker run -d --name=miner --net $(NETWORKNAME) --ip $(SUBNET).1 -e SUBNET=$(SUBNET) --volumes-from data-eth_miner -p 8545:8545 $(AUTHOR)/$(NAME):$(VERSION) miner
 
 node1:
 	docker run -d --name=node1 --net $(NETWORKNAME) --ip $(SUBNET).2 -e SUBNET=$(SUBNET) --volumes-from data-eth_node1 $(AUTHOR)/$(NAME):$(VERSION) node1
