@@ -3,6 +3,7 @@ MAINTAINER Maxim B. Belooussov <belooussov@gmail.com> Toon Leijtens <toon.leijte
 
 ENV DATA_DIR /root/.ethereum
 ARG NETWORKID=42
+ENV NETWORKID $NETWORKID
 ENV SUBNET 42.42.42
 
 RUN mkdir $DATA_DIR
