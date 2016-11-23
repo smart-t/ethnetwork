@@ -3,7 +3,13 @@ MAINTAINER Maxim B. Belooussov <belooussov@gmail.com> Toon Leijtens <toon.leijte
 
 ENV DATA_DIR /root/.ethereum
 ARG NETWORKID=42
+ARG NETWORKPORT=30303
+ARG ETHSTATSPORT=3000
+ARG MINERPORT=8545
 ENV NETWORKID $NETWORKID
+ENV ETHSTATSPORT $ETHSTATSPORT
+ENV MINERPORT $MINERPORT
+ENV NETWORKPORT $NETWORKPORT
 ENV SUBNET 42.42.42
 
 RUN mkdir $DATA_DIR
@@ -40,8 +46,8 @@ RUN cd /eth-net-intelligence-api &&\
     npm install -d &&\
     npm install pm2 -g
 
-EXPOSE 3000
-EXPOSE 8545
-EXPOSE 30303
+EXPOSE $ETHSTATSPORT
+EXPOSE $MINERPORT
+EXPOSE $NETWORKPORT
 COPY artifacts/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

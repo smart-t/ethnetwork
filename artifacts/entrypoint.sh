@@ -1,6 +1,6 @@
 #!/bin/sh
 
-OPTIONS="--nodiscover --networkid $NETWORKID --port 30303 --rpc --rpcport 8545 --etherbase 0x57e25703aba36bd2575e9027de2cb9ac187dc6da --verbosity 6"
+OPTIONS="--nodiscover --networkid $NETWORKID --port $NETWORKPORT --rpc --rpcport $MINERPORT --etherbase 0x57e25703aba36bd2575e9027de2cb9ac187dc6da --verbosity 6"
 HELP="This is a help page. \
 Available modes are: miner node1 node2 ethstats ethstatsclient help."
 case $1 in

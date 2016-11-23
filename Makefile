@@ -1,6 +1,7 @@
 AUTHOR=banking
 NAME=ethnetwork
 NETWORKID=42
+NETWORKPORT=30303
 SUBNET=10.0.42
 VERSION=latest
 PWD=/dockerbackup
@@ -9,7 +10,7 @@ MINERPORT=8545
 ETHSTATSPORT=3000
 
 build:
-	docker build --build-arg NETWORKID=${NETWORKID} -t $(AUTHOR)/$(NAME):$(VERSION) .
+	docker build --build-arg NETWORKID=$(NETWORKID) NETWORKPORT=$(NETWORKPORT) MINERPORT=$(MINERPORT) ETHSTATSPORT=$(ETHSTATSPORT) -t $(AUTHOR)/$(NAME):$(VERSION) .
 
 start: network miner node1 node2 ethstats ethstatsclient
 
@@ -77,4 +78,3 @@ cinode1:
 
 cinode2:
 	docker exec -ti node2 /geth attach
-
