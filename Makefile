@@ -10,7 +10,7 @@ MINERPORT=8545
 ETHSTATSPORT=3000
 
 build:
-	docker build --build-arg NETWORKID=$(NETWORKID) NETWORKPORT=$(NETWORKPORT) MINERPORT=$(MINERPORT) ETHSTATSPORT=$(ETHSTATSPORT) -t $(AUTHOR)/$(NAME):$(VERSION) .
+	docker build --build-arg=NETWORKID=$(NETWORKID) --build-arg=NETWORKPORT=$(NETWORKPORT) --build-arg=MINERPORT=$(MINERPORT) --build-arg=ETHSTATSPORT=$(ETHSTATSPORT) -t $(AUTHOR)/$(NAME):$(VERSION) .
 
 start: network miner node1 node2 ethstats ethstatsclient
 
