@@ -46,6 +46,7 @@ RUN cd /eth-net-intelligence-api &&\
     npm install -d &&\
     npm install pm2 -g
 
+ENV WS_SECRET g3heim
 EXPOSE $ETHSTATSPORT
 EXPOSE $MINERPORT
 EXPOSE $NETWORKPORT
