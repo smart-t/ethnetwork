@@ -2,7 +2,7 @@ FROM ethereum/client-go:alpine
 MAINTAINER Maxim B. Belooussov <belooussov@gmail.com> Toon Leijtens <toon.leijtens@gmail.com>
 
 ENV DATA_DIR /root/.ethereum
-ARG NETWORKID=42
+ARG NETWORKID=206
 ARG NETWORKPORT=30303
 ARG ETHSTATSPORT=3000
 ARG MINERPORT=8545
