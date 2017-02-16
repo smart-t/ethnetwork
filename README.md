@@ -110,7 +110,7 @@ To start up your personal Ethereum network, start all the components with one co
 make start
 ```
 
-This will create a separate virtual network called "icec" in Docker, will
+This will create a separate virtual network called "tlnet" in Docker, will
 launch one miner node, two normal nodes, the monitoring client, and the
 monitoring server nodes, all from a single docker image. The network range for
 the virtual docker network is defined in the Makefile. Each container has its
@@ -153,7 +153,7 @@ To inspect the network and see what's in there simply run the following docker
 command:
 
 ```
-docker network inspect icec
+docker network inspect tlnet
 ```
 
 ### Step 6: interact with the environment
